@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400 700;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400 600;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "General Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.25rem;
+
+    /* Light mode (Gotham dawn — rarely used, app is dark-first) */
+    --background: 0.96 0.008 260;
+    --foreground: 0.15 0.01 260;
+    --card: 0.99 0.004 260;
+    --card-foreground: 0.15 0.01 260;
+    --popover: 0.99 0.004 260;
+    --popover-foreground: 0.15 0.01 260;
+
+    --primary: 0.78 0.16 85;
+    --primary-foreground: 0.16 0.02 85;
+
+    --secondary: 0.92 0.01 260;
+    --secondary-foreground: 0.22 0.01 260;
+    --muted: 0.93 0.008 260;
+    --muted-foreground: 0.48 0.01 260;
+
+    --accent: 0.78 0.16 85;
+    --accent-foreground: 0.16 0.02 85;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.005 25;
+    --success: 0.6 0.16 150;
+    --warning: 0.75 0.15 85;
+
+    --border: 0.88 0.01 260;
+    --input: 0.88 0.01 260;
+    --ring: 0.78 0.16 85;
+
+    --chart-1: 0.78 0.16 85;
+    --chart-2: 0.55 0.05 260;
+    --chart-3: 0.7 0.12 200;
+    --chart-4: 0.6 0.18 25;
+    --chart-5: 0.65 0.1 150;
+
+    --sidebar: 0.97 0.006 260;
+    --sidebar-foreground: 0.15 0.01 260;
+    --sidebar-primary: 0.78 0.16 85;
+    --sidebar-primary-foreground: 0.16 0.02 85;
+    --sidebar-accent: 0.93 0.008 260;
+    --sidebar-accent-foreground: 0.22 0.01 260;
+    --sidebar-border: 0.88 0.01 260;
+    --sidebar-ring: 0.78 0.16 85;
+  }
+
+  .dark {
+    /* Gotham Nocturne — deep cinematic night */
+    --background: 0.13 0.006 260;
+    --foreground: 0.93 0.008 260;
+    --card: 0.17 0.008 260;
+    --card-foreground: 0.93 0.008 260;
+    --popover: 0.17 0.008 260;
+    --popover-foreground: 0.93 0.008 260;
+
+    --primary: 0.82 0.16 85;
+    --primary-foreground: 0.13 0.006 85;
+
+    --secondary: 0.21 0.008 260;
+    --secondary-foreground: 0.85 0.008 260;
+    --muted: 0.2 0.008 260;
+    --muted-foreground: 0.6 0.008 260;
+
+    --accent: 0.82 0.16 85;
+    --accent-foreground: 0.13 0.006 85;
+
+    --destructive: 0.6 0.2 25;
+    --destructive-foreground: 0.95 0.005 25;
+    --success: 0.65 0.16 150;
+    --warning: 0.78 0.16 85;
+
+    --border: 0.26 0.008 260;
+    --input: 0.26 0.008 260;
+    --ring: 0.82 0.16 85;
+
+    --chart-1: 0.82 0.16 85;
+    --chart-2: 0.6 0.05 260;
+    --chart-3: 0.7 0.12 200;
+    --chart-4: 0.65 0.2 25;
+    --chart-5: 0.68 0.1 150;
+
+    --sidebar: 0.15 0.006 260;
+    --sidebar-foreground: 0.93 0.008 260;
+    --sidebar-primary: 0.82 0.16 85;
+    --sidebar-primary-foreground: 0.13 0.006 85;
+    --sidebar-accent: 0.2 0.008 260;
+    --sidebar-accent-foreground: 0.85 0.008 260;
+    --sidebar-border: 0.26 0.008 260;
+    --sidebar-ring: 0.82 0.16 85;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .text-glow-accent {
+    text-shadow: 0 0 24px oklch(var(--accent) / 0.45), 0 0 8px
+      oklch(var(--accent) / 0.3);
+  }
+  .bg-fog {
+    background: radial-gradient(
+        ellipse at 50% 0%,
+        oklch(0.2 0.01 260 / 0.6) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse at 80% 100%,
+        oklch(0.16 0.008 260 / 0.4) 0%,
+        transparent 50%
+      );
+  }
+  .bg-vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      oklch(0.1 0.005 260 / 0.8) 100%
+    );
+  }
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--primary)) 0%,
+      oklch(0.7 0.18 70) 100%
+    );
+  }
+  .gradient-subtle {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      oklch(var(--background) / 0.9) 100%
+    );
+  }
+  .gradient-text-accent {
+    background: linear-gradient(
+      180deg,
+      oklch(0.9 0.05 85) 0%,
+      oklch(var(--accent)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
